@@ -1,5 +1,5 @@
 # CD-CI-Laravel-Vue-DevTemplate
-
+'''mermaid
 ---
 config:
   layout: dagre
@@ -14,3 +14,4 @@ flowchart TD
     G --> H["Docker-Image, Template-Files sowie Setup-Files in Repos bereitstellen"]
     H --> I["Docker-Actions für Pullen, Commiten, Pushen und Mergen erstellen"]
     I --> J["Bereitstellen der neuen DevOps Lösung"]
+'''
