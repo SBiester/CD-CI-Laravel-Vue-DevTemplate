@@ -1,4 +1,4 @@
-# CD-CI-Laravel-Vue-DevTemplate
+# CD-CI-Laravel-Vue-Vite-DevTemplate
 ```mermaid
 ---
 config:
