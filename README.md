@@ -14,4 +14,15 @@ flowchart TD
     G --> H["Docker-Image, Template-Files sowie Setup-Files in Repos bereitstellen"]
     H --> I["Docker-Actions für Pullen, Commiten, Pushen und Mergen erstellen"]
     I --> J["Bereitstellen der neuen DevOps Lösung"]
+     A:::dark
+     B:::dark
+     C:::dark
+     D:::dark
+     E:::dark
+     F:::dark
+     G:::dark
+     H:::dark
+     I:::dark
+     J:::dark
+    classDef dark stroke-width:2px, stroke-dasharray: 0, stroke:#313131, fill:#EFEFEF, color:#313131
 ```
