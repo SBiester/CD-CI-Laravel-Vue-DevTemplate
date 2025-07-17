@@ -1,0 +1,20 @@
+
+services:
+  iimtemplate:
+    container_name: laraveldev
+    build:
+      context: ../
+      dockerfile: ./Setup-Files/DOCKERFILE
+      args:
+        NODE_VERSION: 22
+    image: laraveldev:latest
+    restart: always
+    volumes:
+      - ../Project-Files:/var/www/frontend
+    working_dir: /var/www/frontend
+    ports:
+      - "8000:80"
+      - "5173:5173"
+    environment:
+      APP_ENV: local
+      SESSION_DRIVER: file
