@@ -314,7 +314,7 @@ span.precentage-text {
     }
     .btn-submit{
         background: #007a8c;
-        color: white;
+        color: rgb(255, 255, 255);
         padding: 10px;
         border: none;
         border-radius: 5px;
@@ -330,4 +330,3 @@ span.precentage-text {
         margin-top: 10px;
         width: 100%;
     }
-

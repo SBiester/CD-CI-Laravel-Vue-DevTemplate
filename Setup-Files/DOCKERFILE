@@ -3,16 +3,14 @@
 # DOCKERFILE für einen Container zur Entwicklung von Laravel/Vue.js Apps
 FROM bitnami/minideb:latest
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Node.js-Version
-ARG NODE_VERSION=22
 ENV NODE_VERSION=${NODE_VERSION}
+ARG NODE_VERSION=22
 
 # Arbeitsverzeichnis
 WORKDIR /var/www/frontend
-
-
-
-CMD [ "sh", "-c", "rm -rf /var/www/frontend/node_modules/.bin/*" ]
 
 # Systempakete und Tools für PHP und MySQL installieren
 RUN apt-get update && apt-get install -y \

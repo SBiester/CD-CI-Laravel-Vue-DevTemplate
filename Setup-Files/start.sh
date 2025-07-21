@@ -33,21 +33,19 @@ if [ -z "$(ls -A "$FOLDER")" ]; then
 
 fi
 
-if [ ! -d node_modules ]; then
-  npm install
-fi
+# Node-Module
+npm install
 
 # Services starten
 echo "Starting services..."
-npm install
 service php8.2-fpm start
 nginx -g "daemon off;" &
 
 echo "Ready."
 
-# Optional: Vite Dev Server
+# Vite Dev Server starten
 npm run dev || exit 1
-# php artisan serve
+php artisan serve
 
 # Nginx Logs streamen
 tail -s 1 -f /var/log/nginx/*.log

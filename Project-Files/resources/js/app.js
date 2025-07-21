@@ -3,9 +3,9 @@
 import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import App from './App.vue';
+import '../css/app.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
-
 
 import Dashboard from './components/Dashboard.vue';
 import SubmitIdeaForm from './components/SubmitIdeaForm.vue';
@@ -14,7 +14,6 @@ import SubmitIdea from './components/SubmitIdea.vue';
 //import IdeaDetails from './components/IdeaDetails.vue';
 //import IdeaList from './components/IdeaList.vue';
 //import Login from './components/Login.vue';
-
 
 const routes = [
   {
@@ -45,7 +44,6 @@ const routes = [
   //  path: '/Login',
   //  component: Login,
   //},
-
 ];
 
 
