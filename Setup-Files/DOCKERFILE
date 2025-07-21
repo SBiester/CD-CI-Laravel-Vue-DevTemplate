@@ -1,0 +1,49 @@
+# syntax=docker/dockerfile:1.4
+
+# DOCKERFILE für einen Container zur Entwicklung von Laravel/Vue.js Apps
+FROM bitnami/minideb:latest
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Node.js-Version
+ENV NODE_VERSION=${NODE_VERSION}
+ARG NODE_VERSION=22
+
+# Arbeitsverzeichnis
+WORKDIR /var/www/frontend
+
+# Systempakete und Tools für PHP und MySQL installieren
+RUN apt-get update && apt-get install -y \
+    git \
+    curl gnupg software-properties-common \
+    nginx \
+    php8.2 php8.2-cli php8.2-common php8.2-fpm php8.2-mysql \
+    php8.2-zip php8.2-gd php8.2-mbstring php8.2-curl php8.2-xml php8.2-bcmath php8.2-pdo && \
+    # Node.js und npm
+    curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g npm && \
+    # Composer
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Nginx-Konfigurationsdatei kopieren
+COPY /Setup-Files/default /etc/nginx/sites-available/default
+
+# Projekt-Quelle per Bind-Mount
+EXPOSE 80 5173
+
+# Erstelle Zwischenspeicher für Projektdaten
+RUN mkdir -p /var/templatefiles && \
+    mkdir -p /var/startfiles \
+    chown www-data:www-data /var/templatefiles
+
+# Kopiere Projektdateien ins Temp-Verzeichnis
+COPY --chown=www-data:www-data /Project-Files/. /var/templatefiles    
+
+# Startskript kopieren und ausführbar machen
+COPY /Setup-Files/start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
+# Ausführen des Startskripts
+ENTRYPOINT [ "/usr/local/bin/start.sh" ]
